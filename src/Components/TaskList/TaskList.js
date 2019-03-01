@@ -6,6 +6,13 @@ import TaskItem from './TaskItem';
 
 class TaskList extends Component {
     render() {
+      const taskItemElm = this.props.data.map((item, index) => {
+        return <TaskItem 
+          key={index} // key không phải props =
+          item={item}
+          index={index}
+        />
+      })
         return (
             <div className="col-md-9 px-0">
                 <div className="container-fluid px-0">
@@ -36,7 +43,9 @@ class TaskList extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <TaskItem />
+
+                      {taskItemElm}
+                      
                     </tbody>
                   </table>
                 </div>

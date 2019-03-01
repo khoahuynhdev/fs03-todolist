@@ -6,8 +6,12 @@ import Controls from './Components/Controls/Controls';
 import TaskList from './Components/TaskList/TaskList';
 import Modal from './Components/Modal/Modal';
 
+// import data
+import data from './data';
+
 class App extends Component {
   render() {
+    console.log(data);
     return (
       <div className="App">
         <div>
@@ -20,7 +24,9 @@ class App extends Component {
 
 
               {/* DISPLAY */}
-              <TaskList />
+              <TaskList 
+                data={data}
+              />
 
             </div>
           </div>

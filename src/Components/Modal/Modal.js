@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Modal extends Component {
     render() {
         return (
-            <div className="modal fade" id="modalTask">
+          <div className="modal fade" id="modalTask">
             <div className="modal-dialog modal-lg">
               <div className="modal-content">
                 {/* Modal Header */}
@@ -29,7 +29,7 @@ class Modal extends Component {
                       <option>Cao</option>
                     </select>
                   </div>
-                  <label htmlFor>Người thực hiện:</label>
+                  <label>Người thực hiện:</label>
                   <br />
                   <div className="form-check-inline">
                     <label className="form-check-label">
@@ -52,7 +52,7 @@ class Modal extends Component {
                     </label>
                   </div>
                   <br /><br />
-                  <label htmlFor>Nhãn:</label>
+                  <label >Nhãn:</label>
                   <br />
                   <div className="form-check-inline">
                     <label className="form-check-label">
