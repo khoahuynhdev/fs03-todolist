@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+// import components
+import FilterString from '../Controls/FilterString';
+import TaskItem from './TaskItem';
+
 class TaskList extends Component {
     render() {
         return (
@@ -11,11 +15,11 @@ class TaskList extends Component {
                         <h3 className="text-left ml-2 ">Danh sách công việc</h3>
                       </div>
                     </div>
+
                     <div className="col-md-6">
-                      <div className="form-group text-left my-0">
-                        <input type="text" className="form-control" placeholder="Tìm kiếm công việc" />
-                      </div>
+                      <FilterString />
                     </div>
+                    
                   </div>
                 </div>
                 <div className="px-3">
@@ -32,48 +36,7 @@ class TaskList extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td className="text-center">1</td>
-                        <td className="text-center">Soạn ReactJS</td>
-                        <td className="text-center">
-                          <i className="fa fa-circle" style={{color: '#389E0D'}} />
-                          <i className="fa fa-circle" style={{color: '#13C2C2'}} />
-                        </td>
-                        <td className="text-danger font-weight-bold text-center">Cao</td>
-                        <td className="text-center">
-                          <img src="./img/user_2.jpg" className="user" alt />
-                          <img src="./img/user_3.jpg" className="user" alt />
-                        </td>
-                        <td className="text-center">
-                          <button type="button" className="btn btn-outline-primary">Sửa</button>
-                          <button type="button" className="btn btn-outline-success">Xong</button>
-                          <button type="button" className="btn btn-outline-danger">Xóa</button>
-                        </td>
-                        <td className="text-center">
-                          <i className="fa fa-check-square-o mr-2" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="text-center">2</td>
-                        <td className="text-center">Soạn Python</td>
-                        <td className="text-center">
-                          <i className="fa fa-circle" style={{color: '#722ED1'}} />
-                          <i className="fa fa-circle" style={{color: '#CF1322'}} />
-                          <i className="fa fa-circle" style={{color: '#389E0D'}} />
-                        </td>
-                        <td className="text-danger font-weight-bold text-center">Cao</td>
-                        <td className="text-center">
-                          <img src="./img/user_3.jpg" className="user" alt />
-                        </td>
-                        <td className="text-center">
-                          <button type="button" className="btn btn-outline-primary">Sửa</button>
-                          <button type="button" className="btn btn-outline-success">Xong</button>
-                          <button type="button" className="btn btn-outline-danger">Xóa</button>
-                        </td>
-                        <td className="text-center">
-                          <i className="fa fa-check-square-o mr-2" />
-                        </td>
-                      </tr>
+                      <TaskItem />
                     </tbody>
                   </table>
                 </div>
