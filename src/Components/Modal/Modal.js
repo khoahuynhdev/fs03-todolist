@@ -5,7 +5,8 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskName: '',
+      id: null,
+      name: '',
       description: '',
       priority: '',
       memberIDArr: [],
@@ -15,14 +16,19 @@ class Modal extends Component {
   }
 
 
-  onSubmit = () => {
-
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      id: new Date().getTime()
+    }, () => {
+      this.props.addTask(this.state);
+    })
+    
   }
 
   onChange = (e) => {
-    console.log(e.target.name + " " + e.target.value)
     this.setState({
-      // taskName: e.target.value,
+      // name: e.target.value,
       // description: e.target.value
       // computed ES6
       [e.target.name]: e.target.value
@@ -56,14 +62,14 @@ class Modal extends Component {
               {/* Modal body */}
               <div className="modal-body">
                 <div className="form-group">
-                  <label htmlFor="taskName">Tên công việc:</label>
+                  <label htmlFor="name">Tên công việc:</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="taskName"
+                    id="name"
                     onChange={this.onChange}
-                    name="taskName"
-                    value={this.state.taskName}
+                    name="name"
+                    value={this.state.name}
                   />
                 </div>
                 <div className="form-group">
@@ -123,7 +129,12 @@ class Modal extends Component {
                 </CheckboxGroup>
               </div>
               {/* Modal footer */}
+
               <div className="modal-footer">
+                <button 
+                  // type="submit" 
+                  className="btn btn-outline-success"
+                >Submit</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
               </div>
             </div>

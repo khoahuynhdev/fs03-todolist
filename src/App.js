@@ -31,9 +31,16 @@ class App extends Component {
     })
   }
 
-  // componentWillMount(){
-  //   console.log('componentWillMount')
-  // }
+  addTask = (task) => {
+    console.log(task)
+    let taskList = JSON.parse(localStorage.getItem('tasks'))
+    taskList.push(task);
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+    this.setState({
+      taskList
+      // taskList: taskList
+    })
+  }
   
 
   render() {
@@ -59,7 +66,9 @@ class App extends Component {
             </div>
           </div>
           {/* The Modal */}
-          <Modal />
+          <Modal 
+            addTask={this.addTask}
+          />
           
         </div>
 
