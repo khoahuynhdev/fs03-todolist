@@ -10,13 +10,34 @@ import Modal from './Components/Modal/Modal';
 import data from './data';
 
 class App extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      taskList: []
+    }
+  }
+  
   saveLS = () => {
     localStorage.setItem('tasks', JSON.stringify(data));
+    window.location.reload();
   }
 
+  componentDidMount() {
+    const taskList = JSON.parse(localStorage.getItem('tasks'));
+    console.log('componentDidMount')
+    this.setState({
+      taskList
+      // taskList: taskList
+    })
+  }
+
+  // componentWillMount(){
+  //   console.log('componentWillMount')
+  // }
+  
+
   render() {
-    console.log(data);
+    console.log('render');
     return (
       <div className="App">
         <div>
@@ -32,7 +53,7 @@ class App extends Component {
 
               {/* DISPLAY */}
               <TaskList 
-                data={data}
+                data={this.state.taskList}
               />
 
             </div>
