@@ -10,6 +10,11 @@ import Modal from './Components/Modal/Modal';
 import data from './data';
 
 class App extends Component {
+
+  saveLS = () => {
+    localStorage.setItem('tasks', JSON.stringify(data));
+  }
+
   render() {
     console.log(data);
     return (
@@ -20,7 +25,9 @@ class App extends Component {
             <div className="row">
               
               {/* PANEL */}
-              <Controls />
+              <Controls 
+                saveLS={this.saveLS}
+              />
 
 
               {/* DISPLAY */}

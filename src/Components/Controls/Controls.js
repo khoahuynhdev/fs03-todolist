@@ -6,6 +6,7 @@ import FilterProgress from './FilterProgress';
 import FilterLabel from './FilterLabel';
 import FilterPriority from './FilterPriority';
 import Sort from './Sort';
+import SaveDataOnLS from './SaveDataOnLS'
 
 class Controls extends Component {
     render() {
@@ -17,6 +18,9 @@ class Controls extends Component {
                 </div>
                 
                 <AddNewTask />
+                <SaveDataOnLS 
+                    saveLS={this.props.saveLS}
+                />
                 {/* Filter */}
                 <div className="px-3">
                   
