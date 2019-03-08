@@ -105,7 +105,10 @@ class TaskItem extends Component {
                     <button 
                         type="button" 
                         className="btn btn-outline-primary"
-                        onClick={this.props.getTask.bind(this, item)}
+                        onClick={() => {
+                            this.props.getTask(item);
+                            this.props.convertAddToEdit()
+                        }}
                         data-toggle="modal"
                         data-target="#modalTask"
                     >Sửa</button>

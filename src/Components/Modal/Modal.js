@@ -46,10 +46,10 @@ class Modal extends Component {
     });
   }
 
-  componentWillReceiveProps = () => {
+  componentWillReceiveProps = (nextProps) => {
     // console.log("componentWillReceiveProps")
-    if(this.props.task){
-      const {id, name, description, priority, memberIDArr, labelArr, status} = this.props.task
+    if(nextProps.task){
+      const {id, name, description, priority, memberIDArr, labelArr, status} = nextProps.task
       this.setState({
         // destructuring es6
         id, name, description, priority, memberIDArr, labelArr, status
@@ -58,6 +58,8 @@ class Modal extends Component {
   }
 
   render() {
+    const {isAddNewTask} = this.props;
+    console.log(isAddNewTask)
     return (
       <div className="modal fade" id="modalTask">
         <div className="modal-dialog modal-lg">
@@ -65,7 +67,9 @@ class Modal extends Component {
             <div className="modal-content">
               {/* Modal Header */}
               <div className="modal-header">
-                <h4 className="modal-title">Thêm công việc</h4>
+                <h4 className="modal-title">
+                  {isAddNewTask ? 'Thêm task' : 'Sửa task'}
+                </h4>
                 <button type="button" className="close" data-dismiss="modal">×</button>
               </div>
               {/* Modal body */}
@@ -142,8 +146,8 @@ class Modal extends Component {
               <div className="modal-footer">
                 <button 
                   // type="submit" 
-                  className="btn btn-outline-success"
-                >Submit</button>
+                  className={`btn btn-outline-${isAddNewTask ? 'success' : 'warning'}`}
+                >{isAddNewTask ? 'Thêm task' : 'Sửa task'}</button>
                 <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
               </div>
             </div>

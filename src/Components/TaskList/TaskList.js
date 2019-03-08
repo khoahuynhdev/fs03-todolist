@@ -14,6 +14,7 @@ class TaskList extends Component {
             item={item}
             index={index}
             getTask={this.props.getTask}
+            convertAddToEdit={this.props.convertAddToEdit}
           />
         })
       }

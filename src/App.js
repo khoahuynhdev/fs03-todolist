@@ -14,7 +14,8 @@ class App extends Component {
     super(props);
     this.state = {
       taskList: [],
-      task: {}
+      task: {},
+      isAddNewTask: true
     }
   }
   
@@ -25,7 +26,6 @@ class App extends Component {
 
   componentDidMount() {
     const taskList = JSON.parse(localStorage.getItem('tasks'));
-    console.log('componentDidMount')
     this.setState({
       taskList
       // taskList: taskList
@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   addTask = (task) => {
-    console.log(task)
     let taskList = JSON.parse(localStorage.getItem('tasks'))
     taskList.push(task);
     localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -49,8 +48,19 @@ class App extends Component {
     })
   } 
 
+  convertAddToEdit = () => {
+    this.setState({
+      isAddNewTask: false
+    })
+  }
+
+  convertEditToAdd = () => {
+    this.setState({
+      isAddNewTask: true
+    })
+  }
+
   render() {
-    console.log('render');
     return (
       <div className="App">
         <div>
@@ -61,12 +71,14 @@ class App extends Component {
               {/* PANEL */}
               <Controls 
                 saveLS={this.saveLS}
+                convertEditToAdd={this.convertEditToAdd}
               />
 
               {/* DISPLAY */}
               <TaskList 
                 data={this.state.taskList}
                 getTask={this.getTask}
+                convertAddToEdit={this.convertAddToEdit}
               />
 
             </div>
@@ -75,6 +87,7 @@ class App extends Component {
           <Modal 
             addTask={this.addTask}
             task={this.state.task}
+            isAddNewTask={this.state.isAddNewTask}
           />
           
         </div>

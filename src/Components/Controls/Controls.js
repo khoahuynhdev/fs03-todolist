@@ -17,7 +17,9 @@ class Controls extends Component {
                   <h3 className="text-white d-inline font-weight-light ml-2">Lê Quang Song</h3>
                 </div>
                 
-                <AddNewTask />
+                <AddNewTask 
+                    convertEditToAdd={this.props.convertEditToAdd}
+                />
                 <SaveDataOnLS 
                     saveLS={this.props.saveLS}
                 />
