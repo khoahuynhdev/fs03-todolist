@@ -60,6 +60,24 @@ class App extends Component {
     })
   }
 
+  editTask = (task) => {
+    console.log("Edit: ", task)
+    // Lấy data từ localstorage
+    let taskList = JSON.parse(localStorage.getItem('tasks'))
+
+    // tìm index trong taskList
+    const index = taskList.findIndex(elm => elm.id === task.id);
+    taskList[index] = task
+
+    // update LS
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+
+    // hiển giao diện
+    this.setState({
+      taskList: taskList
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -88,6 +106,7 @@ class App extends Component {
             addTask={this.addTask}
             task={this.state.task}
             isAddNewTask={this.state.isAddNewTask}
+            editTask={this.editTask}
           />
           
         </div>

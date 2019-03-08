@@ -18,7 +18,7 @@ class TaskItem extends Component {
     }
 
     getPriority = (number) => {
-        switch (number) {
+        switch (parseInt(number, 10) ) {
             case 1:
                 return 'Cao'
             case 2:
@@ -31,7 +31,7 @@ class TaskItem extends Component {
     }
 
     getPriorityClass = (number) => {
-        switch (number) {
+        switch (parseInt(number, 10) ) {
             case 1:
                 return 'text-danger'
             case 2:

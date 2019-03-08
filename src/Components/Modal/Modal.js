@@ -17,11 +17,17 @@ class Modal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      id: new Date().getTime()
-    }, () => {
-      this.props.addTask(this.state);
-    })
+
+    if(this.props.isAddNewTask){
+      this.setState({
+        id: new Date().getTime()
+      }, () => {
+        this.props.addTask(this.state);
+      })
+    } else {
+      this.props.editTask(this.state)
+    }
+    
     
   }
 
@@ -47,8 +53,17 @@ class Modal extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    // console.log("componentWillReceiveProps")
-    if(nextProps.task){
+    if(nextProps.isAddNewTask){
+      this.setState({
+        id: null,
+        name: '',
+        description: '',
+        priority: '',
+        memberIDArr: [],
+        labelArr: [],
+        status: 1
+      })
+    } else if(nextProps.task){
       const {id, name, description, priority, memberIDArr, labelArr, status} = nextProps.task
       this.setState({
         // destructuring es6
