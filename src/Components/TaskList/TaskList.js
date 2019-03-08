@@ -13,6 +13,7 @@ class TaskList extends Component {
             key={index} // key không phải props =
             item={item}
             index={index}
+            getTask={this.props.getTask}
           />
         })
       }

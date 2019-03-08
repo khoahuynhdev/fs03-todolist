@@ -102,7 +102,13 @@ class TaskItem extends Component {
                     {userElm}
                 </td>
                 <td className="text-center d-flex">
-                    <button type="button" className="btn btn-outline-primary">Sửa</button>
+                    <button 
+                        type="button" 
+                        className="btn btn-outline-primary"
+                        onClick={this.props.getTask.bind(this, item)}
+                        data-toggle="modal"
+                        data-target="#modalTask"
+                    >Sửa</button>
 
                     <div className="form-group mx-2 my-0">
                       <select className="form-control" name="" id="">

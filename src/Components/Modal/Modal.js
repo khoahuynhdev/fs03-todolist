@@ -15,7 +15,6 @@ class Modal extends Component {
     }
   }
 
-
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({
@@ -47,6 +46,16 @@ class Modal extends Component {
     });
   }
 
+  componentWillReceiveProps = () => {
+    // console.log("componentWillReceiveProps")
+    if(this.props.task){
+      const {id, name, description, priority, memberIDArr, labelArr, status} = this.props.task
+      this.setState({
+        // destructuring es6
+        id, name, description, priority, memberIDArr, labelArr, status
+      })
+    }
+  }
 
   render() {
     return (

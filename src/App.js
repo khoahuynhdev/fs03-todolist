@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskList: []
+      taskList: [],
+      task: {}
     }
   }
   
@@ -41,7 +42,12 @@ class App extends Component {
       // taskList: taskList
     })
   }
-  
+
+  getTask = (task) => {
+    this.setState({
+      task
+    })
+  } 
 
   render() {
     console.log('render');
@@ -57,10 +63,10 @@ class App extends Component {
                 saveLS={this.saveLS}
               />
 
-
               {/* DISPLAY */}
               <TaskList 
                 data={this.state.taskList}
+                getTask={this.getTask}
               />
 
             </div>
@@ -68,6 +74,7 @@ class App extends Component {
           {/* The Modal */}
           <Modal 
             addTask={this.addTask}
+            task={this.state.task}
           />
           
         </div>
