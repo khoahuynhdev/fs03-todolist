@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
-
+import { connect } from 'react-redux';
+import * as actions from '../../actions/index';
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -17,18 +18,7 @@ class Modal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-
-    if(this.props.isAddNewTask){
-      this.setState({
-        id: new Date().getTime()
-      }, () => {
-        this.props.addTask(this.state);
-      })
-    } else {
-      this.props.editTask(this.state)
-    }
-    
-    
+    this.props.addTask(this.state);
   }
 
   onChange = (e) => {
@@ -73,8 +63,7 @@ class Modal extends Component {
   }
 
   render() {
-    const {isAddNewTask} = this.props;
-    console.log(isAddNewTask)
+    const isAddNewTask = true;
     return (
       <div className="modal fade" id="modalTask">
         <div className="modal-dialog modal-lg">
@@ -172,5 +161,16 @@ class Modal extends Component {
     );
   }
 }
+const mapStateToProps = () => {
+  return {
 
-export default Modal;
+  };
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTask: (task) => {
+      dispatch(actions.addTask(task));
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

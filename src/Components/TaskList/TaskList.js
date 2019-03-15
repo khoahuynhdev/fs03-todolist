@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-
+import TaskItem from './TaskItem';
 // import components
 import FilterString from '../Controls/FilterString';
-import TaskItem from './TaskItem';
-
+import { connect } from 'react-redux';
 class TaskList extends Component {
     render() {
-      let taskItemElm;
-      if(this.props.data){
-        taskItemElm = this.props.data.map((item, index) => {
+      let taskItemElm = [];
+      if(this.props.taskList){
+        taskItemElm = this.props.taskList.map((item, index) => {
           return <TaskItem 
             key={index} // key không phải props =
             item={item}
@@ -60,4 +59,18 @@ class TaskList extends Component {
     }
 }
 
-export default TaskList;
+// connect
+// state -> props: get only data
+// dispatch -> props: map an action
+
+const mapStateToProps = (state) => {
+  return {
+    taskList: state.taskListReducer
+  };
+}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+
+//   };
+// }
+export default connect(mapStateToProps)(TaskList);

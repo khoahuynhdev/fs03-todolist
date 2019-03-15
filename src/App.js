@@ -21,8 +21,16 @@ class App extends Component {
   
   saveLS = () => {
     localStorage.setItem('tasks', JSON.stringify(data));
-    window.location.reload();
+    this.getDataOnLS();
   }
+  getDataOnLS = () => {
+    const localData = localStorage.getItem('tasks');
+    if (localData) {
+      const taskList = JSON.parse(localStorage.getItem("tasks"));
+      this.setState({ taskList });
+    };
+  };
+
 
   componentDidMount() {
     const taskList = JSON.parse(localStorage.getItem('tasks'));
@@ -93,8 +101,7 @@ class App extends Component {
               />
 
               {/* DISPLAY */}
-              <TaskList 
-                data={this.state.taskList}
+              <TaskList
                 getTask={this.getTask}
                 convertAddToEdit={this.convertAddToEdit}
               />
