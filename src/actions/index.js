@@ -8,3 +8,18 @@ export const addTask = (task) => {
 		//payload: task
 	}
 }
+
+export const updateIsAddNewTask = (value) => {
+	return {
+		type: "IS_ADD_NEW_TASK",
+		value
+	}
+};
+
+export const getTaskEdit = (task) => {
+	return {
+		type: "GET_TASK_EDITING",
+		task,
+		// payload: task
+	}
+}

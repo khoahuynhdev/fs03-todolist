@@ -53,8 +53,8 @@ class Modal extends Component {
         labelArr: [],
         status: 1
       })
-    } else if(nextProps.task){
-      const {id, name, description, priority, memberIDArr, labelArr, status} = nextProps.task
+    } else if(nextProps.editTask){
+      const {id, name, description, priority, memberIDArr, labelArr, status} = nextProps.editTask
       this.setState({
         // destructuring es6
         id, name, description, priority, memberIDArr, labelArr, status
@@ -63,7 +63,7 @@ class Modal extends Component {
   }
 
   render() {
-    const isAddNewTask = true;
+    const {isAddNewTask} = this.props;
     return (
       <div className="modal fade" id="modalTask">
         <div className="modal-dialog modal-lg">
@@ -161,16 +161,18 @@ class Modal extends Component {
     );
   }
 }
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-
+    isAddNewTask: state.isAddNewTaskReducer,
+    editTask: state.taskEditReducer
   };
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     addTask: (task) => {
       dispatch(actions.addTask(task));
-    }
+    },
+    
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

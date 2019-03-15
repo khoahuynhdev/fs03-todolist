@@ -1,4 +1,3 @@
-JSON.parse(localStorage.getItem('tasks'));
 const initialState = localStorage && localStorage.tasks ? JSON.parse(localStorage.getItem('tasks')) : [];
 
 // NOTE phai co state mac dinh
