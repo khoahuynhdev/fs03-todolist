@@ -9,6 +9,12 @@ export const addTask = (task) => {
 	}
 }
 
+export const saveTaskOnLS = () => {
+	return {
+		type: 'SAVE_LS'
+	}
+}
+
 export const updateIsAddNewTask = (value) => {
 	return {
 		type: "IS_ADD_NEW_TASK",
@@ -21,5 +27,27 @@ export const getTaskEdit = (task) => {
 		type: "GET_TASK_EDITING",
 		task,
 		// payload: task
+	}
+}
+
+export const editTask = (taskEditing) => {
+	return {
+		type: 'EDIT_TASK',
+		taskEditing
+	}
+}
+
+export const editStatus = (id, status) => {
+	return {
+		type: 'EDIT_STATUS',
+		id,
+		status
+	}
+}
+
+export const getFilter = (value) => {
+	return {
+		type: 'FILTER_TASK',
+		value
 	}
 }

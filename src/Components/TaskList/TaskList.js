@@ -6,17 +6,21 @@ import { connect } from 'react-redux';
 class TaskList extends Component {
     render() {
       let taskItemElm = [];
-      if(this.props.taskList){
-        taskItemElm = this.props.taskList.map((item, index) => {
-          return <TaskItem 
-            key={index} // key không phải props =
-            item={item}
-            index={index}
-            getTask={this.props.getTask}
-            convertAddToEdit={this.props.convertAddToEdit}
-          />
-        })
+      let fTasks = [];
+      if(this.props.taskFilter === 0){
+        fTasks = this.props.taskList;
+      } else {
+        fTasks = this.props.taskList.filter(item => item.status === this.props.taskFilter)
       }
+      taskItemElm = fTasks.map((item, index) => {
+        return <TaskItem 
+          key={index} // key không phải props =
+          item={item}
+          index={index}
+          getTask={this.props.getTask}
+          convertAddToEdit={this.props.convertAddToEdit}
+        />
+      });
       
         return (
             <div className="col-md-9 px-0">
@@ -65,7 +69,8 @@ class TaskList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    taskList: state.taskListReducer
+    taskList: state.taskListReducer,
+    taskFilter: state.filterReducer
   };
 }
 // const mapDispatchToProps = (dispatch) => {

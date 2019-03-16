@@ -18,7 +18,11 @@ class Modal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addTask(this.state);
+    if (this.props.isAddNewTask) {
+      this.props.addTask(this.state);
+    } else {
+      this.props.taskEdit(this.state);
+    }
   }
 
   onChange = (e) => {
@@ -58,7 +62,7 @@ class Modal extends Component {
       this.setState({
         // destructuring es6
         id, name, description, priority, memberIDArr, labelArr, status
-      })
+      }, () => this.props.taskEdit(this.state));
     }
   }
 
@@ -172,7 +176,9 @@ const mapDispatchToProps = (dispatch) => {
     addTask: (task) => {
       dispatch(actions.addTask(task));
     },
-    
+    taskEdit: (task) => {
+      dispatch(actions.editTask(task));
+    }    
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

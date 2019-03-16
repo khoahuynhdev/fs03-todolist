@@ -1,30 +1,35 @@
 const initialState = localStorage && localStorage.tasks ? JSON.parse(localStorage.getItem('tasks')) : [];
 
 // NOTE phai co state mac dinh
-const taskListReducer = (state=initialState, action) => {
-		// ...
-		switch (action.type) {
-			case 'ADD_TASK':
-				// ...
-				// B1: task = action.task
-				// B2: lay data tu LS: state
-				// B3: state.push(task)
-				//state.push(action.task);
-				const taskList = [...state, action.task];
-				// B4: day len localStorage
-				localStorage.setItem('tasks', JSON.stringify(taskList));
-				// B5: return state
-				return taskList;
-			case 'EDIT_TASK':
+const taskListReducer = (state = initialState, action) => {
+	// ...
+	let index = -1;
+	let tasks = [];
+	switch (action.type) {
+		case 'ADD_TASK':
+			const taskList = [...state, action.task];
+			localStorage.setItem('tasks', JSON.stringify(taskList));
+			return taskList;
 
-				break;
+		case 'EDIT_TASK':
+			index = state.findIndex(elm => {
+				return elm.id === action.taskEditing.id
+			});
+			tasks = [...state];
+			tasks[index] = action.taskEditing
+			localStorage.setItem('tasks', JSON.stringify(tasks));
+			return tasks;
 
-			default:
+		case 'EDIT_STATUS':
+			index = state.findIndex(elm => elm.id === action.id);
+			tasks = state.map(elm => Object.assign({}, elm));
+			tasks[index].status = parseInt(action.status);
+			localStorage.setItem('tasks', JSON.stringify(tasks));
+			return tasks;
 
-				break;
-		}
-		// cuoi cung tra ve state
-		return state;
+		default:
+			return state;
+	}
 };
 
 export default taskListReducer;

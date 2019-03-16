@@ -7,9 +7,8 @@ const isAddNewTask = (state = initialState, action) => {
       return newIsAddNewTask;
   
     default:
-      break;
+      return state;      
   }
-  return state;
 };
 
 export default isAddNewTask;

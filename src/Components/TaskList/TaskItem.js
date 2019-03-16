@@ -19,7 +19,7 @@ class TaskItem extends Component {
 	}
 
 	getPriority = (number) => {
-		switch (parseInt(number, 10) ) {
+		switch (parseInt(number, 10)) {
 			case 1:
 				return 'Cao'
 			case 2:
@@ -32,7 +32,7 @@ class TaskItem extends Component {
 	}
 
 	getPriorityClass = (number) => {
-		switch (parseInt(number, 10) ) {
+		switch (parseInt(number, 10)) {
 			case 1:
 				return 'text-danger'
 			case 2:
@@ -44,20 +44,11 @@ class TaskItem extends Component {
 		}
 	}
 
-	getProgressIcon = (number) => {
-		switch (number) {
-			case 1:
-				return "fa-hourglass-start"
-			case 2:
-				return "fa-anchor"
-			case 3:
-				return "fa-check-square-o"
-			case 4:
-				return "fa-trash-o"
-		
-			default:
-				return ""
-		}
+	getProgressIcon = {
+		1: "fa-hourglass-start",
+		2: "fa-anchor",
+		3: "fa-check-square-o",
+		4: "fa-trash-o"
 	}
 
 	render() {
@@ -65,14 +56,14 @@ class TaskItem extends Component {
 		// const item = this.props.item;
 
 		// destructuring trong ES6
-		const {index, item} = this.props
+		const { index, item } = this.props;
 
 		// render label
 		const labelElm = item.labelArr.map((label, index) => {
-			return <i 
+			return <i
 				key={index}
-				className="fa fa-circle" 
-				style={{ color: this.getLabelColor(label) }} 
+				className="fa fa-circle"
+				style={{ color: this.getLabelColor(label) }}
 			/>
 		})
 
@@ -80,8 +71,8 @@ class TaskItem extends Component {
 		const userElm = item.memberIDArr.map((member, index) => {
 			return <img
 				key={index}
-				src={`./img/${member}.jpg`} 
-				className="user" alt="user" 
+				src={`./img/${member}.jpg`}
+				className="user" alt="user"
 			/>
 		})
 
@@ -103,8 +94,8 @@ class TaskItem extends Component {
 					{userElm}
 				</td>
 				<td className="text-center d-flex">
-					<button 
-						type="button" 
+					<button
+						type="button"
 						className="btn btn-outline-primary"
 						onClick={() => {
 							this.props.updateIsAddNewTask(false);
@@ -115,17 +106,24 @@ class TaskItem extends Component {
 					>Sửa</button>
 
 					<div className="form-group mx-2 my-0">
-					  <select className="form-control" name="" id="">
-						<option value={-1}>Chọn tình trạng</option>
-						<option value={1}>Bắt đầu</option>
-						<option value={2}>Tạm ngưng</option>
-						<option value={3}>Hoàn thành</option>
-						<option value={4}>Hủy bỏ</option>
-					  </select>
-					</div>                    
+						<select
+							className="form-control"
+							name=""
+							id=""
+							onChange={(e) => {
+								this.props.editStatus(item.id, e.target.value);
+							}}
+							value={item.status}>
+							<option value={-1}>Chọn tình trạng</option>
+							<option value={1}>Bắt đầu</option>
+							<option value={2}>Tạm ngưng</option>
+							<option value={3}>Hoàn thành</option>
+							<option value={4}>Hủy bỏ</option>
+						</select>
+					</div>
 				</td>
 				<td className="text-center">
-					<i className={`fa ${this.getProgressIcon(item.status)}  mr-2`} />
+					<i className={`fa ${this.getProgressIcon[item.status]}  mr-2`} />
 				</td>
 			</tr>
 		);
@@ -144,6 +142,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		editTask: (task) => {
 			dispatch(actions.getTaskEdit(task));
+		},
+		editStatus: (id, status) => {
+			dispatch(actions.editStatus(id, status));
 		}
 	}
 }
