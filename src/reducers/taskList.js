@@ -7,6 +7,7 @@ const taskListReducer = (state = initialState, action) => {
 	let tasks = [];
 	switch (action.type) {
 		case 'ADD_TASK':
+			action.task.id = new Date().getTime();
 			const taskList = [...state, action.task];
 			localStorage.setItem('tasks', JSON.stringify(taskList));
 			return taskList;
@@ -16,7 +17,7 @@ const taskListReducer = (state = initialState, action) => {
 				return elm.id === action.taskEditing.id
 			});
 			tasks = [...state];
-			tasks[index] = action.taskEditing
+			tasks[index] = action.taskEditing;
 			localStorage.setItem('tasks', JSON.stringify(tasks));
 			return tasks;
 
