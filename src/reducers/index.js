@@ -3,11 +3,13 @@ import taskListReducer from './taskList';
 import isAddNewTaskReducer from './isAddNewTask';
 import taskEditReducer from './taskEdit';
 import filterReducer from './filterTask';
+import profileReducer from './ProfileReducer';
 const rootReducer = combineReducers({
 	taskListReducer,
 	isAddNewTaskReducer,
 	taskEditReducer,
-	filterReducer
+	filterReducer,
+	profileReducer
 });
 
 export default rootReducer;

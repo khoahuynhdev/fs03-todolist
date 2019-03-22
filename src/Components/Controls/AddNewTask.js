@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/index';
+import { Link } from 'react-router-dom';
 class AddNewTask extends Component {
 	render() {
 		return (
-			<button
+			<Link to="/create-task"
 				type="button"
-				className="btn my-3 btn--newTask"
-				data-toggle="modal"
-				data-target="#modalTask"
-				// onClick={this.props.convertEditToAdd}
-				onClick={this.props.updateIsAddNewTask.bind(this, true)}
-			>
-				<i className="fa fa-pencil-square-o" />
-				Tạo Task mới
-            </button>
+				className="btn my-3 btn--newTask">
+				Tạo task mới
+			</Link>
 		);
 	}
 }

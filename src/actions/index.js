@@ -52,3 +52,10 @@ export const getFilterLabel = (name, value) => {
 		value
 	};
 }
+
+export const getProfile = (profile) => {
+	return {
+		type: 'GET_PROFILE',
+		profile
+	}
+};

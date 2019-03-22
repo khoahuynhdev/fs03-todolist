@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/index';
+import { Link } from 'react-router-dom';
 class TaskItem extends Component {
 
 	getLabelColor = (label) => {
@@ -94,16 +95,16 @@ class TaskItem extends Component {
 					{userElm}
 				</td>
 				<td className="text-center d-flex">
-					<button
+					<Link
 						type="button"
+						to={`/edit-task/${item.id}`}
 						className="btn btn-outline-primary"
 						onClick={() => {
 							this.props.updateIsAddNewTask(false);
 							this.props.editTask(item);
 						}}
-						data-toggle="modal"
-						data-target="#modalTask"
-					>Sửa</button>
+						
+					>Sửa</Link>
 
 					<div className="form-group mx-2 my-0">
 						<select
