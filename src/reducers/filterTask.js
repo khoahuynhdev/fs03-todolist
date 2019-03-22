@@ -8,9 +8,7 @@ const newInitialStage = {
     Issue: false
   }
 }
-// TODO use an object to change state
-// for taskProcess 0 1 2 3 4
-// for taskLabel 0 1 2 3 4
+
 const filterReducer = (state = newInitialStage, action) => {
   let newStage;
   switch (action.type) {

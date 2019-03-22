@@ -38,8 +38,8 @@ class TaskList extends Component {
     const { Frontend, Backend, API, Issue } = this.props.taskLabelFilter;
 
     let newfTasks;
-    if (Frontend === Backend === API === Issue) {
-      newfTasks = fTasks
+    if (Frontend === false && Backend === false && API === false && Issue === false) {
+      newfTasks = fTasks;
     } else {
       newfTasks = fTasks.filter(item => this.getLabel(labelArr, item.labelArr));      
     }
