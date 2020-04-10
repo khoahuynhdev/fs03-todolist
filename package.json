@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "auth0-js": "^9.10.1",
+    "auth0-js": "^9.13.2",
     "jwt-decode": "^2.2.0",
     "react": "^16.8.3",
     "react-checkbox-group": "^4.0.1",
